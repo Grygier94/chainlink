@@ -792,7 +792,7 @@ func MakeDirectRequestJobSpec(t *testing.T) *job.Job {
 		SchemaVersion:     1,
 		ExternalJobID:     uuid.NewV4(),
 		DirectRequestSpec: drs,
-		Pipeline:          *pipeline.NewTaskDAG(),
+		Pipeline:          pipeline.Pipeline{},
 		PipelineSpec:      &pipeline.Spec{},
 	}
 	return spec
