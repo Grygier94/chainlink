@@ -333,9 +333,7 @@ func TestRunner(t *testing.T) {
 
 	t.Run("missing required env vars", func(t *testing.T) {
 		keyStore := offchainreporting.NewKeyStore(db, utils.GetScryptParams(config.Config))
-		var os = job.Job{
-			Pipeline: *pipeline.NewTaskDAG(),
-		}
+		var os = job.Job{}
 		s := `
 		type               = "offchainreporting"
 		schemaVersion      = 1
@@ -380,9 +378,7 @@ ds1 -> ds1_parse;
 		keyStore := offchainreporting.NewKeyStore(db, utils.GetScryptParams(config.Config))
 		_, ek, err := keyStore.GenerateEncryptedP2PKey()
 		require.NoError(t, err)
-		var os = job.Job{
-			Pipeline: *pipeline.NewTaskDAG(),
-		}
+		var os = job.Job{}
 		s := `
 		type               = "offchainreporting"
 		schemaVersion      = 1
@@ -429,9 +425,7 @@ ds1 -> ds1_parse;
 		require.NoError(t, err)
 		kb, _, err := keyStore.GenerateEncryptedOCRKeyBundle()
 		require.NoError(t, err)
-		var os = job.Job{
-			Pipeline: *pipeline.NewTaskDAG(),
-		}
+		var os = job.Job{}
 		s := `
 		type               = "offchainreporting"
 		schemaVersion      = 1
@@ -491,9 +485,7 @@ ds1 -> ds1_parse;
 		require.NoError(t, err)
 		kb, _, err := keyStore.GenerateEncryptedOCRKeyBundle()
 		require.NoError(t, err)
-		var os = job.Job{
-			Pipeline: *pipeline.NewTaskDAG(),
-		}
+		var os = job.Job{}
 
 		s := fmt.Sprintf(minimalNonBootstrapTemplate, cltest.NewEIP55Address(), ek.PeerID, transmitterAddress.Hex(), kb.ID, "http://blah.com", "")
 		os, err = offchainreporting.ValidatedOracleSpecToml(config.Config, s)
@@ -534,9 +526,7 @@ ds1 -> ds1_parse;
 		keyStore := offchainreporting.NewKeyStore(db, utils.GetScryptParams(config.Config))
 		_, ek, err := keyStore.GenerateEncryptedP2PKey()
 		require.NoError(t, err)
-		var os = job.Job{
-			Pipeline: *pipeline.NewTaskDAG(),
-		}
+		var os = job.Job{}
 		s := fmt.Sprintf(minimalBootstrapTemplate, cltest.NewEIP55Address(), ek.PeerID)
 		os, err = offchainreporting.ValidatedOracleSpecToml(config.Config, s)
 		require.NoError(t, err)
